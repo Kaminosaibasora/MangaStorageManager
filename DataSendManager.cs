@@ -12,7 +12,7 @@ namespace MangaStorageManager
         string scriptUrl = "https://script.google.com/macros/s/AKfycbwJH64QfLAzkmEaeWCp9iAmzB7tZm_d9SpxFmP2JqGuNpv4Ffm0cBspIvzzGm_FIx6l/exec";
         // https://script.google.com/macros/s/AKfycbwJH64QfLAzkmEaeWCp9iAmzB7tZm_d9SpxFmP2JqGuNpv4Ffm0cBspIvzzGm_FIx6l/exec
 
-        public async void sendData(string titre, string num, string editeur, string EAN)
+        public void SendManga(string titre, string num, string editeur, string EAN)
         {
             var values = new
             {
@@ -23,9 +23,27 @@ namespace MangaStorageManager
                     editeur, 
                 }
             };
-
             string json = System.Text.Json.JsonSerializer.Serialize(values);
             Console.WriteLine(json);
+            SendData(json);
+        }
+
+        public void SendStorage(string piece, string description, string cb)
+        {
+            Console.WriteLine("Storage");
+        }
+
+        public void SendManagement(string ean, string cb)
+        {
+            Console.WriteLine("Management");
+        }
+
+        // **********************************************************************************************
+        // **********************************************************************************************
+        // **********************************************************************************************
+
+        public async void SendData(string json)
+        {
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");

@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.addMangaPage = new System.Windows.Forms.TabPage();
+            this.labelNum = new System.Windows.Forms.Label();
+            this.numericManga = new System.Windows.Forms.NumericUpDown();
             this.labelEAN = new System.Windows.Forms.Label();
             this.labelEdit = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
@@ -38,27 +40,25 @@
             this.textBoxTitreManga = new System.Windows.Forms.TextBox();
             this.buttonSaveManga = new System.Windows.Forms.Button();
             this.addStoragePage = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonSaveStorage = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.labelCode = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBoxCB = new System.Windows.Forms.TextBox();
             this.labelDesc = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxDesc = new System.Windows.Forms.TextBox();
             this.labelPiece = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxPiece = new System.Windows.Forms.TextBox();
             this.manageMS = new System.Windows.Forms.TabPage();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.buttonRanger = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericManga = new System.Windows.Forms.NumericUpDown();
-            this.labelNum = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonRanger = new System.Windows.Forms.Button();
+            this.textBoxEANManage = new System.Windows.Forms.TextBox();
+            this.comboBoxStrorageM = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.addMangaPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericManga)).BeginInit();
             this.addStoragePage.SuspendLayout();
             this.manageMS.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericManga)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -90,6 +90,27 @@
             this.addMangaPage.TabIndex = 0;
             this.addMangaPage.Text = "Add Manga";
             this.addMangaPage.UseVisualStyleBackColor = true;
+            // 
+            // labelNum
+            // 
+            this.labelNum.Location = new System.Drawing.Point(269, 4);
+            this.labelNum.Name = "labelNum";
+            this.labelNum.Size = new System.Drawing.Size(94, 180);
+            this.labelNum.TabIndex = 9;
+            this.labelNum.Text = "N°";
+            this.labelNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // numericManga
+            // 
+            this.numericManga.Location = new System.Drawing.Point(269, 187);
+            this.numericManga.Name = "numericManga";
+            this.numericManga.Size = new System.Drawing.Size(94, 20);
+            this.numericManga.TabIndex = 8;
+            this.numericManga.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // labelEAN
             // 
@@ -168,14 +189,14 @@
             // 
             // addStoragePage
             // 
-            this.addStoragePage.Controls.Add(this.button3);
+            this.addStoragePage.Controls.Add(this.buttonSaveStorage);
             this.addStoragePage.Controls.Add(this.button2);
             this.addStoragePage.Controls.Add(this.labelCode);
-            this.addStoragePage.Controls.Add(this.textBox5);
+            this.addStoragePage.Controls.Add(this.textBoxCB);
             this.addStoragePage.Controls.Add(this.labelDesc);
-            this.addStoragePage.Controls.Add(this.textBox4);
+            this.addStoragePage.Controls.Add(this.textBoxDesc);
             this.addStoragePage.Controls.Add(this.labelPiece);
-            this.addStoragePage.Controls.Add(this.textBox3);
+            this.addStoragePage.Controls.Add(this.textBoxPiece);
             this.addStoragePage.Location = new System.Drawing.Point(4, 22);
             this.addStoragePage.Name = "addStoragePage";
             this.addStoragePage.Padding = new System.Windows.Forms.Padding(3);
@@ -184,14 +205,15 @@
             this.addStoragePage.Text = "AddStorage";
             this.addStoragePage.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonSaveStorage
             // 
-            this.button3.Location = new System.Drawing.Point(580, 199);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(182, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Sauvegarder";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonSaveStorage.Location = new System.Drawing.Point(580, 199);
+            this.buttonSaveStorage.Name = "buttonSaveStorage";
+            this.buttonSaveStorage.Size = new System.Drawing.Size(182, 23);
+            this.buttonSaveStorage.TabIndex = 7;
+            this.buttonSaveStorage.Text = "Sauvegarder";
+            this.buttonSaveStorage.UseVisualStyleBackColor = true;
+            this.buttonSaveStorage.Click += new System.EventHandler(this.buttonSaveStorage_Click);
             // 
             // button2
             // 
@@ -211,12 +233,13 @@
             this.labelCode.Text = "Code Bar";
             this.labelCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox5
+            // textBoxCB
             // 
-            this.textBox5.Location = new System.Drawing.Point(580, 173);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(182, 20);
-            this.textBox5.TabIndex = 4;
+            this.textBoxCB.Location = new System.Drawing.Point(580, 173);
+            this.textBoxCB.Name = "textBoxCB";
+            this.textBoxCB.Size = new System.Drawing.Size(182, 20);
+            this.textBoxCB.TabIndex = 4;
+            this.textBoxCB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCB_KeyPress);
             // 
             // labelDesc
             // 
@@ -227,13 +250,13 @@
             this.labelDesc.Text = "Description";
             this.labelDesc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox4
+            // textBoxDesc
             // 
-            this.textBox4.Location = new System.Drawing.Point(240, 144);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(334, 78);
-            this.textBox4.TabIndex = 2;
+            this.textBoxDesc.Location = new System.Drawing.Point(240, 144);
+            this.textBoxDesc.Multiline = true;
+            this.textBoxDesc.Name = "textBoxDesc";
+            this.textBoxDesc.Size = new System.Drawing.Size(334, 78);
+            this.textBoxDesc.TabIndex = 2;
             // 
             // labelPiece
             // 
@@ -244,59 +267,26 @@
             this.labelPiece.Text = "Pièce";
             this.labelPiece.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox3
+            // textBoxPiece
             // 
-            this.textBox3.Location = new System.Drawing.Point(6, 173);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(228, 20);
-            this.textBox3.TabIndex = 0;
+            this.textBoxPiece.Location = new System.Drawing.Point(6, 173);
+            this.textBoxPiece.Name = "textBoxPiece";
+            this.textBoxPiece.Size = new System.Drawing.Size(228, 20);
+            this.textBoxPiece.TabIndex = 0;
             // 
             // manageMS
             // 
             this.manageMS.Controls.Add(this.label2);
             this.manageMS.Controls.Add(this.label1);
             this.manageMS.Controls.Add(this.buttonRanger);
-            this.manageMS.Controls.Add(this.textBox6);
-            this.manageMS.Controls.Add(this.comboBox2);
+            this.manageMS.Controls.Add(this.textBoxEANManage);
+            this.manageMS.Controls.Add(this.comboBoxStrorageM);
             this.manageMS.Location = new System.Drawing.Point(4, 22);
             this.manageMS.Name = "manageMS";
             this.manageMS.Size = new System.Drawing.Size(768, 400);
             this.manageMS.TabIndex = 2;
             this.manageMS.Text = "ManageMS";
             this.manageMS.UseVisualStyleBackColor = true;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(214, 175);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(274, 21);
-            this.comboBox2.TabIndex = 0;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(3, 176);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(205, 20);
-            this.textBox6.TabIndex = 1;
-            // 
-            // buttonRanger
-            // 
-            this.buttonRanger.Location = new System.Drawing.Point(494, 176);
-            this.buttonRanger.Name = "buttonRanger";
-            this.buttonRanger.Size = new System.Drawing.Size(271, 23);
-            this.buttonRanger.TabIndex = 2;
-            this.buttonRanger.Text = "Ranger";
-            this.buttonRanger.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(205, 173);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "EAN";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -307,26 +297,40 @@
             this.label2.Text = "Code Bar Storage";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // numericManga
+            // label1
             // 
-            this.numericManga.Location = new System.Drawing.Point(269, 187);
-            this.numericManga.Name = "numericManga";
-            this.numericManga.Size = new System.Drawing.Size(94, 20);
-            this.numericManga.TabIndex = 8;
-            this.numericManga.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(205, 173);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "EAN";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelNum
+            // buttonRanger
             // 
-            this.labelNum.Location = new System.Drawing.Point(269, 4);
-            this.labelNum.Name = "labelNum";
-            this.labelNum.Size = new System.Drawing.Size(94, 180);
-            this.labelNum.TabIndex = 9;
-            this.labelNum.Text = "N°";
-            this.labelNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.buttonRanger.Location = new System.Drawing.Point(494, 176);
+            this.buttonRanger.Name = "buttonRanger";
+            this.buttonRanger.Size = new System.Drawing.Size(271, 23);
+            this.buttonRanger.TabIndex = 2;
+            this.buttonRanger.Text = "Ranger";
+            this.buttonRanger.UseVisualStyleBackColor = true;
+            this.buttonRanger.Click += new System.EventHandler(this.buttonRanger_Click);
+            // 
+            // textBoxEANManage
+            // 
+            this.textBoxEANManage.Location = new System.Drawing.Point(3, 176);
+            this.textBoxEANManage.Name = "textBoxEANManage";
+            this.textBoxEANManage.Size = new System.Drawing.Size(205, 20);
+            this.textBoxEANManage.TabIndex = 1;
+            this.textBoxEANManage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxEANManage_KeyPress);
+            // 
+            // comboBoxStrorageM
+            // 
+            this.comboBoxStrorageM.FormattingEnabled = true;
+            this.comboBoxStrorageM.Location = new System.Drawing.Point(214, 175);
+            this.comboBoxStrorageM.Name = "comboBoxStrorageM";
+            this.comboBoxStrorageM.Size = new System.Drawing.Size(274, 21);
+            this.comboBoxStrorageM.TabIndex = 0;
             // 
             // Form1
             // 
@@ -339,11 +343,11 @@
             this.tabControl1.ResumeLayout(false);
             this.addMangaPage.ResumeLayout(false);
             this.addMangaPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericManga)).EndInit();
             this.addStoragePage.ResumeLayout(false);
             this.addStoragePage.PerformLayout();
             this.manageMS.ResumeLayout(false);
             this.manageMS.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericManga)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -361,19 +365,19 @@
         private System.Windows.Forms.Label labelEdit;
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.ComboBox comboBoxEditeur;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonSaveStorage;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label labelCode;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBoxCB;
         private System.Windows.Forms.Label labelDesc;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxDesc;
         private System.Windows.Forms.Label labelPiece;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxPiece;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonRanger;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox textBoxEANManage;
+        private System.Windows.Forms.ComboBox comboBoxStrorageM;
         private System.Windows.Forms.Label labelNum;
         private System.Windows.Forms.NumericUpDown numericManga;
     }
