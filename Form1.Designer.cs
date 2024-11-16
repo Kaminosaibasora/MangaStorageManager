@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.addMangaPage = new System.Windows.Forms.TabPage();
+            this.buttonResetTitre = new System.Windows.Forms.Button();
             this.labelNum = new System.Windows.Forms.Label();
             this.numericManga = new System.Windows.Forms.NumericUpDown();
             this.labelEAN = new System.Windows.Forms.Label();
@@ -74,6 +75,7 @@
             // 
             // addMangaPage
             // 
+            this.addMangaPage.Controls.Add(this.buttonResetTitre);
             this.addMangaPage.Controls.Add(this.labelNum);
             this.addMangaPage.Controls.Add(this.numericManga);
             this.addMangaPage.Controls.Add(this.labelEAN);
@@ -90,6 +92,16 @@
             this.addMangaPage.TabIndex = 0;
             this.addMangaPage.Text = "Add Manga";
             this.addMangaPage.UseVisualStyleBackColor = true;
+            // 
+            // buttonResetTitre
+            // 
+            this.buttonResetTitre.Location = new System.Drawing.Point(6, 212);
+            this.buttonResetTitre.Name = "buttonResetTitre";
+            this.buttonResetTitre.Size = new System.Drawing.Size(257, 23);
+            this.buttonResetTitre.TabIndex = 10;
+            this.buttonResetTitre.Text = "Reset";
+            this.buttonResetTitre.UseVisualStyleBackColor = true;
+            this.buttonResetTitre.Click += new System.EventHandler(this.buttonResetTitre_Click);
             // 
             // labelNum
             // 
@@ -380,6 +392,7 @@
         private System.Windows.Forms.ComboBox comboBoxStrorageM;
         private System.Windows.Forms.Label labelNum;
         private System.Windows.Forms.NumericUpDown numericManga;
+        private System.Windows.Forms.Button buttonResetTitre;
     }
 }
 

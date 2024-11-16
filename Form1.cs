@@ -94,5 +94,16 @@ namespace MangaStorageManager
         {
             SendManagement();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonResetTitre_Click(object sender, EventArgs e)
+        {
+            textBoxTitreManga.Text = "";
+            numericManga.Value = 1;
+        }
     }
 }
