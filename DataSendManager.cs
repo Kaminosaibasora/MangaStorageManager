@@ -10,22 +10,10 @@ namespace MangaStorageManager
 {
     internal class DataSendManager
     {
-        string scriptUrl = "https://script.google.com/macros/s/AKfycbyOHtUSS0WLcrazNfEpbyo-oOH5mjy7eitWoSp0BK0VGzo-Z6TEqGvcL_gm7STr37bk/exec";
-        // https://script.google.com/macros/s/AKfycbwJH64QfLAzkmEaeWCp9iAmzB7tZm_d9SpxFmP2JqGuNpv4Ffm0cBspIvzzGm_FIx6l/exec
-        // https://script.google.com/macros/s/AKfycbyOHtUSS0WLcrazNfEpbyo-oOH5mjy7eitWoSp0BK0VGzo-Z6TEqGvcL_gm7STr37bk/exec
-        // https://script.google.com/macros/s/AKfycbyOHtUSS0WLcrazNfEpbyo-oOH5mjy7eitWoSp0BK0VGzo-Z6TEqGvcL_gm7STr37bk/exec
+        string scriptMangaUrl = "https://script.google.com/macros/s/AKfycbyOHtUSS0WLcrazNfEpbyo-oOH5mjy7eitWoSp0BK0VGzo-Z6TEqGvcL_gm7STr37bk/exec";
 
         public void SendManga(string titre, string num, string editeur, string EAN)
         {
-            var values = new
-            {
-                values = new[] {
-                    EAN,
-                    titre,
-                    num,
-                    editeur,
-                }
-            };
             string[] queryParameters = new[]
             {
                 "EAN="+EAN,
@@ -33,11 +21,7 @@ namespace MangaStorageManager
                 "num="+num,
                 "editeur="+editeur,
             };
-
-            //string json = System.Text.Json.JsonSerializer.Serialize(values);
-            //Console.WriteLine(json);
-            //SendDataPost(json);
-            SendDataGet(queryParameters);
+            SendDataGet(queryParameters, this.scriptMangaUrl);
         }
 
         public void SendStorage(string piece, string description, string cb)
@@ -54,12 +38,12 @@ namespace MangaStorageManager
         // **********************************************************************************************
         // **********************************************************************************************
 
-        public async void SendDataPost(string json)
+        public async void SendDataPost(string json, string url)
         {
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(this.scriptUrl, content);
+                HttpResponseMessage response = await client.PostAsync(url, content);
                 if (response.IsSuccessStatusCode)
                 {
                     string result = await response.Content.ReadAsStringAsync();
@@ -72,9 +56,9 @@ namespace MangaStorageManager
             }
         }
 
-        public async void SendDataGet(string[] parameters)
+        public async void SendDataGet(string[] parameters, string urlBase)
         {
-            string url = $"{this.scriptUrl}?{string.Join("&", parameters)}";
+            string url = $"{urlBase}?{string.Join("&", parameters)}";
             Console.WriteLine(url);
             using (HttpClient client = new HttpClient())
             {

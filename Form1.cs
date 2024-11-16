@@ -48,9 +48,16 @@ namespace MangaStorageManager
         public void SendManagement()
         {
             string ean = textBoxEANManage.Text.ToString().Replace("+", "");
-            string storage = comboBoxStrorageM.Text;
+            string storage = textBoxCBManage.Text;
             Console.WriteLine("SEND Management");
             textBoxEANManage.Text = "";
+        }
+
+
+        private void buttonGenerateCB_Click(object sender, EventArgs e)
+        {
+            textBoxCB.Text = "Generate";
+            // TODO : export traitement de génération dans une autre classe
         }
 
         // =============================================================================

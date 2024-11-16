@@ -42,7 +42,7 @@
             this.buttonSaveManga = new System.Windows.Forms.Button();
             this.addStoragePage = new System.Windows.Forms.TabPage();
             this.buttonSaveStorage = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonGenerateCB = new System.Windows.Forms.Button();
             this.labelCode = new System.Windows.Forms.Label();
             this.textBoxCB = new System.Windows.Forms.TextBox();
             this.labelDesc = new System.Windows.Forms.Label();
@@ -54,7 +54,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonRanger = new System.Windows.Forms.Button();
             this.textBoxEANManage = new System.Windows.Forms.TextBox();
-            this.comboBoxStrorageM = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxCBManage = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.addMangaPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericManga)).BeginInit();
@@ -168,7 +170,12 @@
             "Glénat",
             "Pika",
             "Meian",
-            "Soleil"});
+            "Soleil",
+            "Akiko",
+            "Clair de Lune",
+            "Saphira",
+            "Booken Manga",
+            "Mana Books"});
             this.comboBoxEditeur.Location = new System.Drawing.Point(369, 186);
             this.comboBoxEditeur.Name = "comboBoxEditeur";
             this.comboBoxEditeur.Size = new System.Drawing.Size(187, 21);
@@ -202,7 +209,7 @@
             // addStoragePage
             // 
             this.addStoragePage.Controls.Add(this.buttonSaveStorage);
-            this.addStoragePage.Controls.Add(this.button2);
+            this.addStoragePage.Controls.Add(this.buttonGenerateCB);
             this.addStoragePage.Controls.Add(this.labelCode);
             this.addStoragePage.Controls.Add(this.textBoxCB);
             this.addStoragePage.Controls.Add(this.labelDesc);
@@ -227,14 +234,15 @@
             this.buttonSaveStorage.UseVisualStyleBackColor = true;
             this.buttonSaveStorage.Click += new System.EventHandler(this.buttonSaveStorage_Click);
             // 
-            // button2
+            // buttonGenerateCB
             // 
-            this.button2.Location = new System.Drawing.Point(580, 144);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(182, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Generate";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonGenerateCB.Location = new System.Drawing.Point(580, 144);
+            this.buttonGenerateCB.Name = "buttonGenerateCB";
+            this.buttonGenerateCB.Size = new System.Drawing.Size(182, 23);
+            this.buttonGenerateCB.TabIndex = 6;
+            this.buttonGenerateCB.Text = "Generate";
+            this.buttonGenerateCB.UseVisualStyleBackColor = true;
+            this.buttonGenerateCB.Click += new System.EventHandler(this.buttonGenerateCB_Click);
             // 
             // labelCode
             // 
@@ -288,11 +296,13 @@
             // 
             // manageMS
             // 
+            this.manageMS.Controls.Add(this.textBoxCBManage);
+            this.manageMS.Controls.Add(this.label3);
+            this.manageMS.Controls.Add(this.comboBox1);
             this.manageMS.Controls.Add(this.label2);
             this.manageMS.Controls.Add(this.label1);
             this.manageMS.Controls.Add(this.buttonRanger);
             this.manageMS.Controls.Add(this.textBoxEANManage);
-            this.manageMS.Controls.Add(this.comboBoxStrorageM);
             this.manageMS.Location = new System.Drawing.Point(4, 22);
             this.manageMS.Name = "manageMS";
             this.manageMS.Size = new System.Drawing.Size(768, 400);
@@ -304,7 +314,7 @@
             // 
             this.label2.Location = new System.Drawing.Point(214, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(274, 173);
+            this.label2.Size = new System.Drawing.Size(189, 173);
             this.label2.TabIndex = 7;
             this.label2.Text = "Code Bar Storage";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -320,9 +330,9 @@
             // 
             // buttonRanger
             // 
-            this.buttonRanger.Location = new System.Drawing.Point(494, 176);
+            this.buttonRanger.Location = new System.Drawing.Point(610, 173);
             this.buttonRanger.Name = "buttonRanger";
-            this.buttonRanger.Size = new System.Drawing.Size(271, 23);
+            this.buttonRanger.Size = new System.Drawing.Size(155, 23);
             this.buttonRanger.TabIndex = 2;
             this.buttonRanger.Text = "Ranger";
             this.buttonRanger.UseVisualStyleBackColor = true;
@@ -336,13 +346,34 @@
             this.textBoxEANManage.TabIndex = 1;
             this.textBoxEANManage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxEANManage_KeyPress);
             // 
-            // comboBoxStrorageM
+            // comboBox1
             // 
-            this.comboBoxStrorageM.FormattingEnabled = true;
-            this.comboBoxStrorageM.Location = new System.Drawing.Point(214, 175);
-            this.comboBoxStrorageM.Name = "comboBoxStrorageM";
-            this.comboBoxStrorageM.Size = new System.Drawing.Size(274, 21);
-            this.comboBoxStrorageM.TabIndex = 0;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Lu",
+            "Non Lu",
+            "Article",
+            "A Vendre"});
+            this.comboBox1.Location = new System.Drawing.Point(409, 175);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(195, 21);
+            this.comboBox1.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(409, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(195, 173);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Status";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxCBManage
+            // 
+            this.textBoxCBManage.Location = new System.Drawing.Point(214, 176);
+            this.textBoxCBManage.Name = "textBoxCBManage";
+            this.textBoxCBManage.Size = new System.Drawing.Size(189, 20);
+            this.textBoxCBManage.TabIndex = 10;
             // 
             // Form1
             // 
@@ -378,7 +409,7 @@
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.ComboBox comboBoxEditeur;
         private System.Windows.Forms.Button buttonSaveStorage;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonGenerateCB;
         private System.Windows.Forms.Label labelCode;
         private System.Windows.Forms.TextBox textBoxCB;
         private System.Windows.Forms.Label labelDesc;
@@ -389,10 +420,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonRanger;
         private System.Windows.Forms.TextBox textBoxEANManage;
-        private System.Windows.Forms.ComboBox comboBoxStrorageM;
         private System.Windows.Forms.Label labelNum;
         private System.Windows.Forms.NumericUpDown numericManga;
         private System.Windows.Forms.Button buttonResetTitre;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox textBoxCBManage;
     }
 }
 
