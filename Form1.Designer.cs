@@ -50,13 +50,14 @@
             this.labelPiece = new System.Windows.Forms.Label();
             this.textBoxPiece = new System.Windows.Forms.TextBox();
             this.manageMS = new System.Windows.Forms.TabPage();
+            this.textBoxCBManage = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonRanger = new System.Windows.Forms.Button();
             this.textBoxEANManage = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBoxCBManage = new System.Windows.Forms.TextBox();
+            this.tabPageConsArt = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.addMangaPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericManga)).BeginInit();
@@ -69,6 +70,7 @@
             this.tabControl1.Controls.Add(this.addMangaPage);
             this.tabControl1.Controls.Add(this.addStoragePage);
             this.tabControl1.Controls.Add(this.manageMS);
+            this.tabControl1.Controls.Add(this.tabPageConsArt);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -103,7 +105,7 @@
             this.buttonResetTitre.TabIndex = 10;
             this.buttonResetTitre.Text = "Reset";
             this.buttonResetTitre.UseVisualStyleBackColor = true;
-            this.buttonResetTitre.Click += new System.EventHandler(this.buttonResetTitre_Click);
+            this.buttonResetTitre.Click += new System.EventHandler(this.ButtonResetTitre_Click);
             // 
             // labelNum
             // 
@@ -187,7 +189,7 @@
             this.textBoxEANManga.Name = "textBoxEANManga";
             this.textBoxEANManga.Size = new System.Drawing.Size(200, 20);
             this.textBoxEANManga.TabIndex = 3;
-            this.textBoxEANManga.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxEANManga_KeyPress);
+            this.textBoxEANManga.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxEANManga_KeyPress);
             // 
             // textBoxTitreManga
             // 
@@ -204,7 +206,7 @@
             this.buttonSaveManga.TabIndex = 1;
             this.buttonSaveManga.Text = "Sauvegarder";
             this.buttonSaveManga.UseVisualStyleBackColor = true;
-            this.buttonSaveManga.Click += new System.EventHandler(this.buttonSaveManga_Click);
+            this.buttonSaveManga.Click += new System.EventHandler(this.ButtonSaveManga_Click);
             // 
             // addStoragePage
             // 
@@ -232,7 +234,7 @@
             this.buttonSaveStorage.TabIndex = 7;
             this.buttonSaveStorage.Text = "Sauvegarder";
             this.buttonSaveStorage.UseVisualStyleBackColor = true;
-            this.buttonSaveStorage.Click += new System.EventHandler(this.buttonSaveStorage_Click);
+            this.buttonSaveStorage.Click += new System.EventHandler(this.ButtonSaveStorage_Click);
             // 
             // buttonGenerateCB
             // 
@@ -242,7 +244,7 @@
             this.buttonGenerateCB.TabIndex = 6;
             this.buttonGenerateCB.Text = "Generate";
             this.buttonGenerateCB.UseVisualStyleBackColor = true;
-            this.buttonGenerateCB.Click += new System.EventHandler(this.buttonGenerateCB_Click);
+            this.buttonGenerateCB.Click += new System.EventHandler(this.ButtonGenerateCB_Click);
             // 
             // labelCode
             // 
@@ -259,7 +261,7 @@
             this.textBoxCB.Name = "textBoxCB";
             this.textBoxCB.Size = new System.Drawing.Size(182, 20);
             this.textBoxCB.TabIndex = 4;
-            this.textBoxCB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCB_KeyPress);
+            this.textBoxCB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxCB_KeyPress);
             // 
             // labelDesc
             // 
@@ -298,7 +300,7 @@
             // 
             this.manageMS.Controls.Add(this.textBoxCBManage);
             this.manageMS.Controls.Add(this.label3);
-            this.manageMS.Controls.Add(this.comboBox1);
+            this.manageMS.Controls.Add(this.comboBoxStatus);
             this.manageMS.Controls.Add(this.label2);
             this.manageMS.Controls.Add(this.label1);
             this.manageMS.Controls.Add(this.buttonRanger);
@@ -309,6 +311,35 @@
             this.manageMS.TabIndex = 2;
             this.manageMS.Text = "ManageMS";
             this.manageMS.UseVisualStyleBackColor = true;
+            // 
+            // textBoxCBManage
+            // 
+            this.textBoxCBManage.Location = new System.Drawing.Point(214, 176);
+            this.textBoxCBManage.Name = "textBoxCBManage";
+            this.textBoxCBManage.Size = new System.Drawing.Size(189, 20);
+            this.textBoxCBManage.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(409, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(195, 173);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Status";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // comboBoxStatus
+            // 
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            "Lu",
+            "Non Lu",
+            "Article",
+            "A Vendre"});
+            this.comboBoxStatus.Location = new System.Drawing.Point(409, 175);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(195, 21);
+            this.comboBoxStatus.TabIndex = 8;
             // 
             // label2
             // 
@@ -336,7 +367,7 @@
             this.buttonRanger.TabIndex = 2;
             this.buttonRanger.Text = "Ranger";
             this.buttonRanger.UseVisualStyleBackColor = true;
-            this.buttonRanger.Click += new System.EventHandler(this.buttonRanger_Click);
+            this.buttonRanger.Click += new System.EventHandler(this.ButtonRanger_Click);
             // 
             // textBoxEANManage
             // 
@@ -344,36 +375,16 @@
             this.textBoxEANManage.Name = "textBoxEANManage";
             this.textBoxEANManage.Size = new System.Drawing.Size(205, 20);
             this.textBoxEANManage.TabIndex = 1;
-            this.textBoxEANManage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxEANManage_KeyPress);
+            this.textBoxEANManage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxEANManage_KeyPress);
             // 
-            // comboBox1
+            // tabPageConsArt
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Lu",
-            "Non Lu",
-            "Article",
-            "A Vendre"});
-            this.comboBox1.Location = new System.Drawing.Point(409, 175);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(195, 21);
-            this.comboBox1.TabIndex = 8;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(409, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(195, 173);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Status";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxCBManage
-            // 
-            this.textBoxCBManage.Location = new System.Drawing.Point(214, 176);
-            this.textBoxCBManage.Name = "textBoxCBManage";
-            this.textBoxCBManage.Size = new System.Drawing.Size(189, 20);
-            this.textBoxCBManage.TabIndex = 10;
+            this.tabPageConsArt.Location = new System.Drawing.Point(4, 22);
+            this.tabPageConsArt.Name = "tabPageConsArt";
+            this.tabPageConsArt.Size = new System.Drawing.Size(768, 400);
+            this.tabPageConsArt.TabIndex = 3;
+            this.tabPageConsArt.Text = "Consult Art";
+            this.tabPageConsArt.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -424,8 +435,9 @@
         private System.Windows.Forms.NumericUpDown numericManga;
         private System.Windows.Forms.Button buttonResetTitre;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
         private System.Windows.Forms.TextBox textBoxCBManage;
+        private System.Windows.Forms.TabPage tabPageConsArt;
     }
 }
 
