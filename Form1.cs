@@ -13,6 +13,20 @@ namespace MangaStorageManager
             InitializeComponent();
             dataSM = new DataSendManager();
             genCBS = new GenerateCBStorage();
+            listViewMangaCons.Columns.Add("EAN", 100);
+            listViewMangaCons.Columns.Add("Titre", 350);
+            listViewMangaCons.Columns.Add("N°", 40);
+            listViewMangaCons.Columns.Add("Editeur", 150);
+            //listViewMangaCons.Items.Add(new ListViewItem(new[] { "1234567989", "test", "1", "test"}));
+            listViewStorageCons.Columns.Add("CB", 100);
+            listViewStorageCons.Columns.Add("Pièce", 150);
+            listViewStorageCons.Columns.Add("Description", 500);
+            //listViewStorageCons.Items.Add(new ListViewItem(new[] { "012345679", "piece", "descriptrion un peu plus longue" }));
+            listViewManagementCons.Columns.Add("EAN", 150);
+            listViewManagementCons.Columns.Add("CB", 150);
+            listViewManagementCons.Columns.Add("Status", 150);
+            listViewManagementCons.Columns.Add("Date", 150);
+            //listViewManagementCons.Items.Add(new ListViewItem(new[] { "012345679", "0123456789", "lu", "11/10/1998" }));
         }
 
         // =============================================================================
@@ -139,6 +153,52 @@ namespace MangaStorageManager
         private void ButtonRanger_Click(object sender, EventArgs e)
         {
             SendManagement();
+        }
+
+        // =============================================================================
+        // ============================ C O N S U L T ==================================
+        // =============================================================================
+
+        /// <summary>
+        /// Lance la recherche de données et met à jour les list view.
+        /// </summary>
+        private void SearchData()
+        {
+            string ean   = textBoxEANCons.Text;
+            string titre = textBoxTitreCons.Text;
+            string cb    = textBoxCBCons.Text;
+            string piece = textBoxPieceCons.Text;
+            // lance la recherche
+            if (ean != "")
+            {
+                string data = dataSM.getManga(new string[] {ean});
+                Console.WriteLine(data);
+            } else if (titre != "")
+            {
+                string data = dataSM.getMangasByTitles(new string[] { titre });
+                Console.WriteLine(data);
+            }
+            // -----------------------------
+            listViewMangaCons     .Items.Clear();
+            listViewMangaCons     .Items.Add(new ListViewItem(new[] { "1234567989", "test", "1", "test" }));
+            listViewStorageCons   .Items.Clear();
+            listViewStorageCons   .Items.Add(new ListViewItem(new[] { "012345679", "piece", "descriptrion un peu plus longue" }));
+            listViewManagementCons.Items.Clear();
+            listViewManagementCons.Items.Add(new ListViewItem(new[] { "012345679", "0123456789", "lu", "11/10/1998" }));
+            textBoxEANCons  .Text = "";
+            textBoxTitreCons.Text = "";
+            textBoxCBCons   .Text = "";
+            textBoxPieceCons.Text = "";
+        }
+
+        private void ButtonSearchStoCons_Click(object sender, EventArgs e)
+        {
+            SearchData();
+        }
+
+        private void ButtonSearchCons_Click(object sender, EventArgs e)
+        {
+            SearchData();
         }
     }
 }
