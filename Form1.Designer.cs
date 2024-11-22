@@ -60,22 +60,22 @@
             this.tabPageConsArt = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.mangaPageCons = new System.Windows.Forms.TabPage();
-            this.storagePageCons = new System.Windows.Forms.TabPage();
-            this.managePageCons = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxEANCons = new System.Windows.Forms.TextBox();
+            this.listViewMangaCons = new System.Windows.Forms.ListView();
+            this.buttonSearchCons = new System.Windows.Forms.Button();
             this.textBoxTitreCons = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.buttonSearchCons = new System.Windows.Forms.Button();
-            this.listViewMangaCons = new System.Windows.Forms.ListView();
+            this.textBoxEANCons = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.storagePageCons = new System.Windows.Forms.TabPage();
             this.listViewStorageCons = new System.Windows.Forms.ListView();
             this.buttonSearchStoCons = new System.Windows.Forms.Button();
             this.textBoxPieceCons = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxCBCons = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.listViewManagementCons = new System.Windows.Forms.ListView();
+            this.managePageCons = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
+            this.listViewManagementCons = new System.Windows.Forms.ListView();
             this.tabControl1.SuspendLayout();
             this.addMangaPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericManga)).BeginInit();
@@ -94,10 +94,11 @@
             this.tabControl1.Controls.Add(this.addStoragePage);
             this.tabControl1.Controls.Add(this.manageMS);
             this.tabControl1.Controls.Add(this.tabPageConsArt);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(776, 426);
+            this.tabControl1.Size = new System.Drawing.Size(800, 450);
             this.tabControl1.TabIndex = 0;
             // 
             // addMangaPage
@@ -115,7 +116,7 @@
             this.addMangaPage.Location = new System.Drawing.Point(4, 22);
             this.addMangaPage.Name = "addMangaPage";
             this.addMangaPage.Padding = new System.Windows.Forms.Padding(3);
-            this.addMangaPage.Size = new System.Drawing.Size(768, 400);
+            this.addMangaPage.Size = new System.Drawing.Size(792, 424);
             this.addMangaPage.TabIndex = 0;
             this.addMangaPage.Text = "Add Manga";
             this.addMangaPage.UseVisualStyleBackColor = true;
@@ -405,7 +406,7 @@
             this.tabPageConsArt.Controls.Add(this.tabControl2);
             this.tabPageConsArt.Location = new System.Drawing.Point(4, 22);
             this.tabPageConsArt.Name = "tabPageConsArt";
-            this.tabPageConsArt.Size = new System.Drawing.Size(768, 400);
+            this.tabPageConsArt.Size = new System.Drawing.Size(792, 424);
             this.tabPageConsArt.TabIndex = 3;
             this.tabPageConsArt.Text = "Consult Art";
             this.tabPageConsArt.UseVisualStyleBackColor = true;
@@ -419,7 +420,7 @@
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(768, 400);
+            this.tabControl2.Size = new System.Drawing.Size(792, 424);
             this.tabControl2.TabIndex = 0;
             // 
             // mangaPageCons
@@ -433,53 +434,36 @@
             this.mangaPageCons.Location = new System.Drawing.Point(4, 22);
             this.mangaPageCons.Name = "mangaPageCons";
             this.mangaPageCons.Padding = new System.Windows.Forms.Padding(3);
-            this.mangaPageCons.Size = new System.Drawing.Size(760, 374);
+            this.mangaPageCons.Size = new System.Drawing.Size(784, 398);
             this.mangaPageCons.TabIndex = 0;
             this.mangaPageCons.Text = "manga";
             this.mangaPageCons.UseVisualStyleBackColor = true;
             // 
-            // storagePageCons
+            // listViewMangaCons
             // 
-            this.storagePageCons.Controls.Add(this.listViewStorageCons);
-            this.storagePageCons.Controls.Add(this.buttonSearchStoCons);
-            this.storagePageCons.Controls.Add(this.textBoxPieceCons);
-            this.storagePageCons.Controls.Add(this.label6);
-            this.storagePageCons.Controls.Add(this.textBoxCBCons);
-            this.storagePageCons.Controls.Add(this.label7);
-            this.storagePageCons.Location = new System.Drawing.Point(4, 22);
-            this.storagePageCons.Name = "storagePageCons";
-            this.storagePageCons.Padding = new System.Windows.Forms.Padding(3);
-            this.storagePageCons.Size = new System.Drawing.Size(760, 374);
-            this.storagePageCons.TabIndex = 1;
-            this.storagePageCons.Text = "Storage";
-            this.storagePageCons.UseVisualStyleBackColor = true;
+            this.listViewMangaCons.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewMangaCons.FullRowSelect = true;
+            this.listViewMangaCons.GridLines = true;
+            this.listViewMangaCons.HideSelection = false;
+            this.listViewMangaCons.Location = new System.Drawing.Point(6, 45);
+            this.listViewMangaCons.Name = "listViewMangaCons";
+            this.listViewMangaCons.Size = new System.Drawing.Size(772, 347);
+            this.listViewMangaCons.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.listViewMangaCons.TabIndex = 5;
+            this.listViewMangaCons.UseCompatibleStateImageBehavior = false;
+            this.listViewMangaCons.View = System.Windows.Forms.View.Details;
             // 
-            // managePageCons
+            // buttonSearchCons
             // 
-            this.managePageCons.Controls.Add(this.label8);
-            this.managePageCons.Controls.Add(this.listViewManagementCons);
-            this.managePageCons.Location = new System.Drawing.Point(4, 22);
-            this.managePageCons.Name = "managePageCons";
-            this.managePageCons.Size = new System.Drawing.Size(760, 374);
-            this.managePageCons.TabIndex = 2;
-            this.managePageCons.Text = "Manage";
-            this.managePageCons.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(6, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(283, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "EAN";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxEANCons
-            // 
-            this.textBoxEANCons.Location = new System.Drawing.Point(6, 19);
-            this.textBoxEANCons.Name = "textBoxEANCons";
-            this.textBoxEANCons.Size = new System.Drawing.Size(283, 20);
-            this.textBoxEANCons.TabIndex = 1;
+            this.buttonSearchCons.Location = new System.Drawing.Point(515, 6);
+            this.buttonSearchCons.Name = "buttonSearchCons";
+            this.buttonSearchCons.Size = new System.Drawing.Size(233, 36);
+            this.buttonSearchCons.TabIndex = 4;
+            this.buttonSearchCons.Text = "Rechercher";
+            this.buttonSearchCons.UseVisualStyleBackColor = true;
+            this.buttonSearchCons.Click += new System.EventHandler(this.ButtonSearchCons_Click);
             // 
             // textBoxTitreCons
             // 
@@ -497,39 +481,49 @@
             this.label5.Text = "Titre";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // buttonSearchCons
+            // textBoxEANCons
             // 
-            this.buttonSearchCons.Location = new System.Drawing.Point(515, 6);
-            this.buttonSearchCons.Name = "buttonSearchCons";
-            this.buttonSearchCons.Size = new System.Drawing.Size(233, 36);
-            this.buttonSearchCons.TabIndex = 4;
-            this.buttonSearchCons.Text = "Rechercher";
-            this.buttonSearchCons.UseVisualStyleBackColor = true;
-            this.buttonSearchCons.Click += new System.EventHandler(this.ButtonSearchCons_Click);
+            this.textBoxEANCons.Location = new System.Drawing.Point(6, 19);
+            this.textBoxEANCons.Name = "textBoxEANCons";
+            this.textBoxEANCons.Size = new System.Drawing.Size(283, 20);
+            this.textBoxEANCons.TabIndex = 1;
             // 
-            // listViewMangaCons
+            // label4
             // 
-            this.listViewMangaCons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewMangaCons.FullRowSelect = true;
-            this.listViewMangaCons.GridLines = true;
-            this.listViewMangaCons.HideSelection = false;
-            this.listViewMangaCons.Location = new System.Drawing.Point(6, 45);
-            this.listViewMangaCons.Name = "listViewMangaCons";
-            this.listViewMangaCons.Size = new System.Drawing.Size(748, 323);
-            this.listViewMangaCons.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.listViewMangaCons.TabIndex = 5;
-            this.listViewMangaCons.UseCompatibleStateImageBehavior = false;
-            this.listViewMangaCons.View = System.Windows.Forms.View.Details;
+            this.label4.Location = new System.Drawing.Point(6, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(283, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "EAN";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // storagePageCons
+            // 
+            this.storagePageCons.Controls.Add(this.listViewStorageCons);
+            this.storagePageCons.Controls.Add(this.buttonSearchStoCons);
+            this.storagePageCons.Controls.Add(this.textBoxPieceCons);
+            this.storagePageCons.Controls.Add(this.label6);
+            this.storagePageCons.Controls.Add(this.textBoxCBCons);
+            this.storagePageCons.Controls.Add(this.label7);
+            this.storagePageCons.Location = new System.Drawing.Point(4, 22);
+            this.storagePageCons.Name = "storagePageCons";
+            this.storagePageCons.Padding = new System.Windows.Forms.Padding(3);
+            this.storagePageCons.Size = new System.Drawing.Size(784, 398);
+            this.storagePageCons.TabIndex = 1;
+            this.storagePageCons.Text = "Storage";
+            this.storagePageCons.UseVisualStyleBackColor = true;
             // 
             // listViewStorageCons
             // 
+            this.listViewStorageCons.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewStorageCons.FullRowSelect = true;
             this.listViewStorageCons.GridLines = true;
             this.listViewStorageCons.HideSelection = false;
             this.listViewStorageCons.Location = new System.Drawing.Point(6, 47);
             this.listViewStorageCons.Name = "listViewStorageCons";
-            this.listViewStorageCons.Size = new System.Drawing.Size(742, 317);
+            this.listViewStorageCons.Size = new System.Drawing.Size(772, 345);
             this.listViewStorageCons.TabIndex = 11;
             this.listViewStorageCons.UseCompatibleStateImageBehavior = false;
             this.listViewStorageCons.View = System.Windows.Forms.View.Details;
@@ -576,17 +570,16 @@
             this.label7.Text = "Code Bar";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // listViewManagementCons
+            // managePageCons
             // 
-            this.listViewManagementCons.FullRowSelect = true;
-            this.listViewManagementCons.GridLines = true;
-            this.listViewManagementCons.HideSelection = false;
-            this.listViewManagementCons.Location = new System.Drawing.Point(6, 59);
-            this.listViewManagementCons.Name = "listViewManagementCons";
-            this.listViewManagementCons.Size = new System.Drawing.Size(742, 306);
-            this.listViewManagementCons.TabIndex = 12;
-            this.listViewManagementCons.UseCompatibleStateImageBehavior = false;
-            this.listViewManagementCons.View = System.Windows.Forms.View.Details;
+            this.managePageCons.Controls.Add(this.label8);
+            this.managePageCons.Controls.Add(this.listViewManagementCons);
+            this.managePageCons.Location = new System.Drawing.Point(4, 22);
+            this.managePageCons.Name = "managePageCons";
+            this.managePageCons.Size = new System.Drawing.Size(784, 398);
+            this.managePageCons.TabIndex = 2;
+            this.managePageCons.Text = "Manage";
+            this.managePageCons.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -596,6 +589,21 @@
             this.label8.TabIndex = 13;
             this.label8.Text = "Rangement";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // listViewManagementCons
+            // 
+            this.listViewManagementCons.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewManagementCons.FullRowSelect = true;
+            this.listViewManagementCons.GridLines = true;
+            this.listViewManagementCons.HideSelection = false;
+            this.listViewManagementCons.Location = new System.Drawing.Point(6, 59);
+            this.listViewManagementCons.Name = "listViewManagementCons";
+            this.listViewManagementCons.Size = new System.Drawing.Size(774, 335);
+            this.listViewManagementCons.TabIndex = 12;
+            this.listViewManagementCons.UseCompatibleStateImageBehavior = false;
+            this.listViewManagementCons.View = System.Windows.Forms.View.Details;
             // 
             // Form1
             // 

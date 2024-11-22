@@ -9,8 +9,10 @@ namespace MangaStorageManager
     {
         //string scriptMangaUrl = "https://script.google.com/macros/s/AKfycbyOHtUSS0WLcrazNfEpbyo-oOH5mjy7eitWoSp0BK0VGzo-Z6TEqGvcL_gm7STr37bk/exec";
         string scriptMangaUrl = "https://script.google.com/macros/s/AKfycbyYmGx7rHsQAw831sOtKacaAIiVZpRipriaE4DARhUX1NEfsuSiQ00URNBAe7U6jXoJ/exec";
-        string scriptZoneUrl = "https://script.google.com/macros/s/AKfycbwk4Op9MhCCOLvZc9E12FIR64ZlKC88rPIUrpKtGOaYmCrSriRLhHrFYxTmKFjRM8-9Mw/exec";
-        string scriptRangementUrl = "https://script.google.com/macros/s/AKfycbz-_2ooL8vLV0_3vwTZj91XWt8vdrm5m2eclv6OtTrpNp0SfF5zu8_zFn_hxWKbRC8FVw/exec";
+        //string scriptZoneUrl = "https://script.google.com/macros/s/AKfycbwk4Op9MhCCOLvZc9E12FIR64ZlKC88rPIUrpKtGOaYmCrSriRLhHrFYxTmKFjRM8-9Mw/exec";
+        string scriptZoneUrl = "https://script.google.com/macros/s/AKfycbyga8IznXIrGWxJjCv9YfsUkEwTlmix926Qv6_LUJx1T26g-ipL2svaOzqa3Zb2AnWp9w/exec";
+        //string scriptRangementUrl = "https://script.google.com/macros/s/AKfycbz-_2ooL8vLV0_3vwTZj91XWt8vdrm5m2eclv6OtTrpNp0SfF5zu8_zFn_hxWKbRC8FVw/exec";
+        string scriptRangementUrl = "https://script.google.com/macros/s/AKfycbznpe8s0wrUVzzN64NnAEIfn1BvBhcjWwz4vo5xwGrRvhUQYV--rZSPlc1x4iWUAoKCfw/exec";
 
         /// <summary>
         /// Prépare les données et la requête pour l'envoie d'un manga vers la BDD.
@@ -68,7 +70,7 @@ namespace MangaStorageManager
             SendDataGet(queryParameters, this.scriptRangementUrl);
         }
 
-        public string getManga(string[] eans)
+        public async Task<string> getManga(string[] eans)
         {
             string eanstr = "[";
             foreach (string ean in eans)
@@ -80,14 +82,11 @@ namespace MangaStorageManager
             {
                 "action=pull",
                 "EAN="+eanstr,
-            };
-            string data = "OK";
-            ReceiveDataGet(queryParameters, this.scriptMangaUrl);
-            return data;
-
+            };            
+            return await ReceiveDataGet(queryParameters, this.scriptMangaUrl);
         }
 
-        public string getMangasByTitles(string[] titles)
+        public async Task<string> getMangasByTitles(string[] titles)
         {
             string titlestr = "[";
             foreach (string title in titles)
@@ -100,10 +99,71 @@ namespace MangaStorageManager
                 "action=pull",
                 "title="+titlestr,
             };
-            string data = "OK";
-            ReceiveDataGet(queryParameters, this.scriptMangaUrl);
-            return data;
+            return await ReceiveDataGet(queryParameters, this.scriptMangaUrl);
+        }
 
+        public async Task<string> getStorage(string[] cbs)
+        {
+            string cbstr = "[";
+            foreach (string cb in cbs)
+            {
+                cbstr += cb + ",";
+            }
+            cbstr += "]";
+            string[] queryParameters = new[]
+            {
+                "action=pull",
+                "cb="+cbstr,
+            };
+            return await ReceiveDataGet(queryParameters, this.scriptZoneUrl);
+        }
+
+        public async Task<string> getStorageByPiece(string[] pieces)
+        {
+            string piecestr = "[";
+            foreach (string piece in pieces)
+            {
+                piecestr += piece + ",";
+            }
+            piecestr += "]";
+            string[] queryParameters = new[]
+            {
+                "action=pull",
+                "piece="+piecestr,
+            };
+            return await ReceiveDataGet(queryParameters, this.scriptZoneUrl);
+        }
+
+        public async Task<string> getManagementByEAN(string[] eans)
+        {
+            string eanstr = "[";
+            foreach (string ean in eans)
+            {
+                eanstr += ean + ",";
+            }
+            eanstr += "]";
+            string[] queryParameters = new[]
+            {
+                "action=pull",
+                "EAN="+eanstr,
+            };
+            return await ReceiveDataGet(queryParameters, this.scriptRangementUrl);
+        }
+
+        public async Task<string> getManagementByCB(string[] cbs)
+        {
+            string cbstr = "[";
+            foreach (string cb in cbs)
+            {
+                cbstr += cb + ",";
+            }
+            cbstr += "]";
+            string[] queryParameters = new[]
+            {
+                "action=pull",
+                "cb="+cbstr,
+            };
+            return await ReceiveDataGet(queryParameters, this.scriptRangementUrl);
         }
 
         // **********************************************************************************************

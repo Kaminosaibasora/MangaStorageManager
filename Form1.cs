@@ -1,5 +1,9 @@
 ﻿using MangaStorageManager.Services;
+using MangaStorageManager.Services.ResponsesType;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MangaStorageManager
@@ -162,33 +166,91 @@ namespace MangaStorageManager
         /// <summary>
         /// Lance la recherche de données et met à jour les list view.
         /// </summary>
-        private void SearchData()
+        private async void SearchData()
         {
             string ean   = textBoxEANCons.Text;
             string titre = textBoxTitreCons.Text;
             string cb    = textBoxCBCons.Text;
             string piece = textBoxPieceCons.Text;
+            listViewMangaCons.Items     .Clear();
+            listViewStorageCons.Items   .Clear();
+            listViewManagementCons.Items.Clear();
+            // -----------------------------
             // lance la recherche
+            string data = "";
             if (ean != "")
             {
-                string data = dataSM.getManga(new string[] {ean});
-                Console.WriteLine(data);
+                data = await dataSM.getManga(new string[] {ean});
+                MangaSearch(data);
+
             } else if (titre != "")
             {
-                string data = dataSM.getMangasByTitles(new string[] { titre });
-                Console.WriteLine(data);
+                data = await dataSM.getMangasByTitles(new string[] { titre });
+                MangaSearch(data);
+            } else if(cb != "")
+            {
+                data = await dataSM.getStorage(new string[] { cb });
+                StorageSearch(data);
+            } else if (piece != "")
+            {
+                data = await dataSM.getStorageByPiece(new string[] { piece });
+                StorageSearch(data);
             }
-            // -----------------------------
-            listViewMangaCons     .Items.Clear();
-            listViewMangaCons     .Items.Add(new ListViewItem(new[] { "1234567989", "test", "1", "test" }));
-            listViewStorageCons   .Items.Clear();
-            listViewStorageCons   .Items.Add(new ListViewItem(new[] { "012345679", "piece", "descriptrion un peu plus longue" }));
-            listViewManagementCons.Items.Clear();
-            listViewManagementCons.Items.Add(new ListViewItem(new[] { "012345679", "0123456789", "lu", "11/10/1998" }));
-            textBoxEANCons  .Text = "";
+                // -----------------------------
+                textBoxEANCons  .Text = "";
             textBoxTitreCons.Text = "";
             textBoxCBCons   .Text = "";
             textBoxPieceCons.Text = "";
+        }
+
+        public async void MangaSearch(string data)
+        {
+            Console.WriteLine(data);
+            List<string> listEAN = new List<string>();
+            foreach (var line in ResponseSerialize.GetMangaResponseData(data))
+            {
+                listViewMangaCons.Items.Add(new ListViewItem(new[] { line[0], line[1], line[2], line[3] }));
+                listEAN.Add(line[0]);
+            }
+            Console.WriteLine(string.Join(", ", listEAN));
+            data = await dataSM.getManagementByEAN(listEAN.ToArray());
+            List<string> listCB = new List<string>();
+            foreach (var line in ResponseSerialize.GetManagementResponseData(data))
+            {
+                listViewManagementCons.Items.Add(new ListViewItem(new[] { line[0], line[1], line[2], line[3] }));
+                listCB.Add(line[1]);
+            }
+            Console.WriteLine(string.Join(", ", listCB));
+            data = await dataSM.getStorage(listCB.Distinct().ToArray());
+            foreach (var line in ResponseSerialize.GetStorageResponseData(data))
+            {
+                listViewStorageCons.Items.Add(new ListViewItem(new[] { line[2], line[0], line[1] }));
+            }
+        }
+
+        public async void StorageSearch(string data)
+        {
+            Console.WriteLine(data);
+            List<string> listCB = new List<string>();
+            foreach (var line in ResponseSerialize.GetStorageResponseData(data))
+            {
+                listViewStorageCons.Items.Add(new ListViewItem(new[] { line[2], line[0], line[1] }));
+                listCB.Add(line[2]);
+            }
+            Console.WriteLine(string.Join(", ", listCB));
+            data = await dataSM.getManagementByCB(listCB.ToArray());
+            List<string> listEAN = new List<string>();
+            foreach (var line in ResponseSerialize.GetManagementResponseData(data))
+            {
+                listViewManagementCons.Items.Add(new ListViewItem(new[] { line[0], line[1], line[2], line[3] }));
+                listEAN.Add(line[0]);
+            }
+            Console.WriteLine(string.Join(", ", listEAN));
+            data = await dataSM.getManga(listEAN.Distinct().ToArray());
+            foreach (var line in ResponseSerialize.GetMangaResponseData(data))
+            {
+                listViewMangaCons.Items.Add(new ListViewItem(new[] { line[0], line[1], line[2], line[3] }));
+            }
         }
 
         private void ButtonSearchStoCons_Click(object sender, EventArgs e)
