@@ -10,27 +10,24 @@ namespace MangaStorageManager
 {
     public partial class Form1 : Form
     {
-        private DataSendManager dataSM;
-        private GenerateCBStorage genCBS;
+        private readonly DataSendManager dataSM;
+        private readonly GenerateCBStorage genCBS;
         public Form1()
         {
             InitializeComponent();
             dataSM = new DataSendManager();
             genCBS = new GenerateCBStorage();
-            listViewMangaCons.Columns.Add("EAN", 100);
-            listViewMangaCons.Columns.Add("Titre", 350);
-            listViewMangaCons.Columns.Add("N°", 40);
-            listViewMangaCons.Columns.Add("Editeur", 150);
-            //listViewMangaCons.Items.Add(new ListViewItem(new[] { "1234567989", "test", "1", "test"}));
-            listViewStorageCons.Columns.Add("CB", 100);
-            listViewStorageCons.Columns.Add("Pièce", 150);
-            listViewStorageCons.Columns.Add("Description", 500);
-            //listViewStorageCons.Items.Add(new ListViewItem(new[] { "012345679", "piece", "descriptrion un peu plus longue" }));
-            listViewManagementCons.Columns.Add("EAN", 150);
-            listViewManagementCons.Columns.Add("CB", 150);
-            listViewManagementCons.Columns.Add("Status", 150);
-            listViewManagementCons.Columns.Add("Date", 150);
-            //listViewManagementCons.Items.Add(new ListViewItem(new[] { "012345679", "0123456789", "lu", "11/10/1998" }));
+            listViewMangaCons       .Columns.Add("EAN",     100);
+            listViewMangaCons       .Columns.Add("Titre",   350);
+            listViewMangaCons       .Columns.Add("N°",      40);
+            listViewMangaCons       .Columns.Add("Editeur", 150);
+            listViewStorageCons     .Columns.Add("CB",      100);
+            listViewStorageCons     .Columns.Add("Pièce",   150);
+            listViewStorageCons     .Columns.Add("Description", 500);
+            listViewManagementCons  .Columns.Add("EAN",     150);
+            listViewManagementCons  .Columns.Add("CB",      150);
+            listViewManagementCons  .Columns.Add("Status",  150);
+            listViewManagementCons  .Columns.Add("Date",    150);
         }
 
         // =============================================================================
@@ -42,10 +39,10 @@ namespace MangaStorageManager
         /// </summary>
         public void SendManga()
         {
-            string titre = textBoxTitreManga.Text;
-            string num = numericManga.Value.ToString();
+            string titre  = textBoxTitreManga.Text;
+            string num    = numericManga.Value.ToString();
             string editor = comboBoxEditeur.Text;
-            string ean = textBoxEANManga.Text.ToString().Replace("+", "");
+            string ean    = textBoxEANManga.Text.ToString().Replace("+", "").Replace("-", "");
             Console.WriteLine(titre + "|" + num + "|" + editor + "|" + ean);
             dataSM.SendManga(titre, num, editor, ean);
             textBoxEANManga.Text = "";
@@ -58,8 +55,8 @@ namespace MangaStorageManager
         public void SendStorage()
         {
             string piece = textBoxPiece.Text;
-            string desc = textBoxDesc.Text;
-            string cb = textBoxCB.Text.ToString().Replace("+", "");
+            string desc  = textBoxDesc.Text;
+            string cb    = textBoxCB.Text.ToString().Replace("+", "");
             Console.WriteLine("SEND Storage");
             dataSM.SendStorage(piece, desc, cb);
             textBoxDesc.Text = "";
@@ -71,9 +68,9 @@ namespace MangaStorageManager
         /// </summary>
         public void SendManagement()
         {
-            string ean = textBoxEANManage.Text.ToString().Replace("+", "");
+            string ean     = textBoxEANManage.Text.ToString().Replace("+", "");
             string storage = textBoxCBManage.Text;
-            string status = comboBoxStatus.Text;
+            string status  = comboBoxStatus.Text;
             Console.WriteLine("SEND Management");
             dataSM.SendManagement(ean, storage, status);
             textBoxEANManage.Text = "";
@@ -103,7 +100,7 @@ namespace MangaStorageManager
         private void ButtonResetTitre_Click(object sender, EventArgs e)
         {
             textBoxTitreManga.Text = "";
-            numericManga.Value = 1;
+            numericManga.Value     = 1;
             textBoxTitreManga.Focus();
         }
 
@@ -168,9 +165,9 @@ namespace MangaStorageManager
         /// </summary>
         private async void SearchData()
         {
-            string ean   = textBoxEANCons.Text;
+            string ean   = textBoxEANCons.Text.Replace("+", "").Replace("-", "");
             string titre = textBoxTitreCons.Text;
-            string cb    = textBoxCBCons.Text;
+            string cb    = textBoxCBCons.Text.Replace("+", "").Replace("-", "");
             string piece = textBoxPieceCons.Text;
             listViewMangaCons.Items     .Clear();
             listViewStorageCons.Items   .Clear();
@@ -196,20 +193,26 @@ namespace MangaStorageManager
                 data = await dataSM.getStorageByPiece(new string[] { piece });
                 StorageSearch(data);
             }
-                // -----------------------------
-                textBoxEANCons  .Text = "";
+            // -----------------------------
+            textBoxEANCons  .Text = "";
             textBoxTitreCons.Text = "";
             textBoxCBCons   .Text = "";
             textBoxPieceCons.Text = "";
         }
 
+        /// <summary>
+        /// Recherche à propos d'un manga. Lance ensuite une recherche sur les données en relations.
+        /// </summary>
+        /// <param name="data"></param>
         public async void MangaSearch(string data)
         {
             Console.WriteLine(data);
             List<string> listEAN = new List<string>();
             foreach (var line in ResponseSerialize.GetMangaResponseData(data))
             {
-                listViewMangaCons.Items.Add(new ListViewItem(new[] { line[0], line[1], line[2], line[3] }));
+                listViewMangaCons.Items.Add(new ListViewItem(
+                    new[] { line[0], line[1], line[2], line[3] })
+                );
                 listEAN.Add(line[0]);
             }
             Console.WriteLine(string.Join(", ", listEAN));
@@ -217,24 +220,34 @@ namespace MangaStorageManager
             List<string> listCB = new List<string>();
             foreach (var line in ResponseSerialize.GetManagementResponseData(data))
             {
-                listViewManagementCons.Items.Add(new ListViewItem(new[] { line[0], line[1], line[2], line[3] }));
+                listViewManagementCons.Items.Add(new ListViewItem(
+                    new[] { line[0], line[1], line[2], line[3] })
+                );
                 listCB.Add(line[1]);
             }
             Console.WriteLine(string.Join(", ", listCB));
             data = await dataSM.getStorage(listCB.Distinct().ToArray());
             foreach (var line in ResponseSerialize.GetStorageResponseData(data))
             {
-                listViewStorageCons.Items.Add(new ListViewItem(new[] { line[2], line[0], line[1] }));
+                listViewStorageCons.Items.Add(new ListViewItem(
+                    new[] { line[2], line[0], line[1] })
+                );
             }
         }
 
+        /// <summary>
+        /// Recherche à propos d'une zone de stockage. Lance ensuite une recherche sur les données en relations.
+        /// </summary>
+        /// <param name="data"></param>
         public async void StorageSearch(string data)
         {
             Console.WriteLine(data);
             List<string> listCB = new List<string>();
             foreach (var line in ResponseSerialize.GetStorageResponseData(data))
             {
-                listViewStorageCons.Items.Add(new ListViewItem(new[] { line[2], line[0], line[1] }));
+                listViewStorageCons.Items.Add(new ListViewItem(
+                    new[] { line[2], line[0], line[1] })
+                );
                 listCB.Add(line[2]);
             }
             Console.WriteLine(string.Join(", ", listCB));
@@ -242,14 +255,18 @@ namespace MangaStorageManager
             List<string> listEAN = new List<string>();
             foreach (var line in ResponseSerialize.GetManagementResponseData(data))
             {
-                listViewManagementCons.Items.Add(new ListViewItem(new[] { line[0], line[1], line[2], line[3] }));
+                listViewManagementCons.Items.Add(new ListViewItem(
+                    new[] { line[0], line[1], line[2], line[3] })
+                );
                 listEAN.Add(line[0]);
             }
             Console.WriteLine(string.Join(", ", listEAN));
             data = await dataSM.getManga(listEAN.Distinct().ToArray());
             foreach (var line in ResponseSerialize.GetMangaResponseData(data))
             {
-                listViewMangaCons.Items.Add(new ListViewItem(new[] { line[0], line[1], line[2], line[3] }));
+                listViewMangaCons.Items.Add(new ListViewItem(
+                    new[] { line[0], line[1], line[2], line[3] })
+                );
             }
         }
 

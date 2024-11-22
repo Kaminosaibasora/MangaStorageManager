@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MangaStorageManager.Services;
+using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,12 +8,15 @@ namespace MangaStorageManager
 {
     internal class DataSendManager
     {
-        //string scriptMangaUrl = "https://script.google.com/macros/s/AKfycbyOHtUSS0WLcrazNfEpbyo-oOH5mjy7eitWoSp0BK0VGzo-Z6TEqGvcL_gm7STr37bk/exec";
-        string scriptMangaUrl = "https://script.google.com/macros/s/AKfycbyYmGx7rHsQAw831sOtKacaAIiVZpRipriaE4DARhUX1NEfsuSiQ00URNBAe7U6jXoJ/exec";
-        //string scriptZoneUrl = "https://script.google.com/macros/s/AKfycbwk4Op9MhCCOLvZc9E12FIR64ZlKC88rPIUrpKtGOaYmCrSriRLhHrFYxTmKFjRM8-9Mw/exec";
-        string scriptZoneUrl = "https://script.google.com/macros/s/AKfycbyga8IznXIrGWxJjCv9YfsUkEwTlmix926Qv6_LUJx1T26g-ipL2svaOzqa3Zb2AnWp9w/exec";
-        //string scriptRangementUrl = "https://script.google.com/macros/s/AKfycbz-_2ooL8vLV0_3vwTZj91XWt8vdrm5m2eclv6OtTrpNp0SfF5zu8_zFn_hxWKbRC8FVw/exec";
-        string scriptRangementUrl = "https://script.google.com/macros/s/AKfycbznpe8s0wrUVzzN64NnAEIfn1BvBhcjWwz4vo5xwGrRvhUQYV--rZSPlc1x4iWUAoKCfw/exec";
+        string scriptMangaUrl     = "";
+        string scriptZoneUrl      = "";
+        string scriptRangementUrl = "";
+
+        public DataSendManager() {
+            this.scriptMangaUrl = ConfigURL.scriptMangaUrl;
+            this.scriptZoneUrl = ConfigURL.scriptZoneUrl;
+            this.scriptRangementUrl = ConfigURL.scriptRangementUrl;
+        }
 
         /// <summary>
         /// Prépare les données et la requête pour l'envoie d'un manga vers la BDD.
@@ -70,6 +74,11 @@ namespace MangaStorageManager
             SendDataGet(queryParameters, this.scriptRangementUrl);
         }
 
+        /// <summary>
+        /// Réceptionner les données selon les EAN
+        /// </summary>
+        /// <param name="eans"></param>
+        /// <returns></returns>
         public async Task<string> getManga(string[] eans)
         {
             string eanstr = "[";
@@ -86,6 +95,11 @@ namespace MangaStorageManager
             return await ReceiveDataGet(queryParameters, this.scriptMangaUrl);
         }
 
+        /// <summary>
+        /// Réceptionner les données selon les titres
+        /// </summary>
+        /// <param name="titles"></param>
+        /// <returns></returns>
         public async Task<string> getMangasByTitles(string[] titles)
         {
             string titlestr = "[";
@@ -102,6 +116,11 @@ namespace MangaStorageManager
             return await ReceiveDataGet(queryParameters, this.scriptMangaUrl);
         }
 
+        /// <summary>
+        /// Réceptionner les données selon les codes bars
+        /// </summary>
+        /// <param name="cbs"></param>
+        /// <returns></returns>
         public async Task<string> getStorage(string[] cbs)
         {
             string cbstr = "[";
@@ -118,6 +137,11 @@ namespace MangaStorageManager
             return await ReceiveDataGet(queryParameters, this.scriptZoneUrl);
         }
 
+        /// <summary>
+        /// Réceptionner les données selon les pièces
+        /// </summary>
+        /// <param name="pieces"></param>
+        /// <returns></returns>
         public async Task<string> getStorageByPiece(string[] pieces)
         {
             string piecestr = "[";
@@ -134,6 +158,11 @@ namespace MangaStorageManager
             return await ReceiveDataGet(queryParameters, this.scriptZoneUrl);
         }
 
+        /// <summary>
+        /// Réceptionner les données selon les EAN
+        /// </summary>
+        /// <param name="eans"></param>
+        /// <returns></returns>
         public async Task<string> getManagementByEAN(string[] eans)
         {
             string eanstr = "[";
@@ -150,6 +179,11 @@ namespace MangaStorageManager
             return await ReceiveDataGet(queryParameters, this.scriptRangementUrl);
         }
 
+        /// <summary>
+        /// Réceptionner les données selon les codes bars.
+        /// </summary>
+        /// <param name="cbs"></param>
+        /// <returns></returns>
         public async Task<string> getManagementByCB(string[] cbs)
         {
             string cbstr = "[";
@@ -217,6 +251,12 @@ namespace MangaStorageManager
             }
         }
 
+        /// <summary>
+        /// Envoie de la requête get et récupération des données.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <param name="urlBase"></param>
+        /// <returns></returns>
         public async Task<string> ReceiveDataGet(string[] parameters, string urlBase)
         {
             string url = $"{urlBase}?{string.Join("&", parameters)}";
